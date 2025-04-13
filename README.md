@@ -8,6 +8,8 @@ and the backend by the [Render](https://www.render.com/) site.
 <br>
 The database is hosted on the [MongoDB](https://www.mongodb.com/) site. 
 <br>
+The [user-auth-backend](https://github.com/stecavalli/user-auth-backend) repository is an integral part of this project.
+<br>
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 <br>
