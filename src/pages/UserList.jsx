@@ -3,23 +3,41 @@ import "../styles/Form.css";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
+  const [message, setMessage] = useState("");
 
-  // Carica utenti da localStorage
+  // Carica utenti dal backend
   useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-    setUsers(storedUsers);
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users`);
+        const data = await response.json();
+        if (response.ok) {
+          setUsers(data); // Imposta gli utenti nel state
+        } else {
+          setMessage("Errore nel recupero degli utenti.");
+        }
+      } catch (err) {
+        setMessage("Errore di connessione al server");
+      }
+    };
+
+    fetchUsers();
   }, []);
 
   // Elimina utente
-  const handleDelete = (usernameToDelete) => {
-    const filteredUsers = users.filter(user => user.username !== usernameToDelete);
-    setUsers(filteredUsers);
-    localStorage.setItem("users", JSON.stringify(filteredUsers));
+  const handleDelete = async (usernameToDelete) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${usernameToDelete}`, {
+        method: "DELETE",
+      });
 
-    // Se l'utente eliminato era loggato, effettua logout
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (loggedInUser?.username === usernameToDelete) {
-      localStorage.removeItem("loggedInUser");
+      if (response.ok) {
+        setUsers(users.filter(user => user.username !== usernameToDelete)); // Rimuovi utente dal state
+      } else {
+        setMessage("Errore durante l'eliminazione dell'utente");
+      }
+    } catch (err) {
+      setMessage("Errore di connessione al server");
     }
   };
 
@@ -27,6 +45,7 @@ const UserList = () => {
     <div className="form-container">
       <div className="form-card">
         <h2>Utenti Registrati</h2>
+        {message && <p>{message}</p>}
         {users.length === 0 ? (
           <p>Nessun utente registrato.</p>
         ) : (
