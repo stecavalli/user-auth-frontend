@@ -25,7 +25,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Contenitore del Form */
 .form-container {
   display: flex;
   justify-content: center;
@@ -49,7 +48,6 @@ h2 {
   color: #333;
 }
 
-/* Input e Label */
 .form-group {
   margin-bottom: 15px;
   text-align: left;
@@ -74,23 +72,6 @@ input:focus {
   outline: none;
 }
 
-/* Pulsante di Submit */
-.submit-btn {
-  width: 100%;
-  padding: 12px;
-  background-color: green;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.submit-btn:hover {
-  background-color: yellow;
-}
-
-/* Messaggio */
 .message {
   color: red;
   margin-top: 10px;
@@ -110,6 +91,7 @@ button {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+  margin-top: 15px;
 }
 
 button:hover {
