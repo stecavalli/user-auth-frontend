@@ -60,6 +60,7 @@ label {
 
 input {
   width: 100%;
+  background-color: #e0f7fa;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -68,6 +69,7 @@ input {
 }
 
 input:focus {
+  background-color: #ffffff
   border-color: #4CAF50;
   outline: none;
 }
