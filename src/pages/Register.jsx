@@ -20,7 +20,7 @@ const Register = () => {
       const data = await res.json();
 
       if (res.ok) {
-        setMessage("Registrazione completata ✅");
+        setMessage("Registrazione completata");
         setFormData({ username: "", password: "" });
       } else {
         setMessage(data.message || "Errore nella registrazione");
